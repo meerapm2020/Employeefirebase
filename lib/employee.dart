@@ -1,6 +1,5 @@
 import 'package:employee_firebase/database.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:random_string/random_string.dart';
 
 class Employee extends StatefulWidget {
@@ -15,8 +14,6 @@ class _EmployeeState extends State<Employee> {
   TextEditingController agecontroller=TextEditingController();
   TextEditingController locationcontroller=TextEditingController();
   
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -79,6 +76,22 @@ class _EmployeeState extends State<Employee> {
 
         };
         await Database.addEmployeeDetails(employeeInfoMap,Id);
+       showDialog(
+  context: context,
+  builder: (BuildContext context) {
+    return AlertDialog(
+      title: Text("Employee details added successfully"),
+      actions: <Widget>[
+        TextButton(
+          onPressed: () {
+            Navigator.of(context).pop(); 
+          },
+          child: Text('OK'),
+        ),
+      ],
+    );
+  },
+);
 
       }, child: Text("Add",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color: Colors.black)),))),
         ],),
